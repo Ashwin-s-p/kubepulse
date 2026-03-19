@@ -1,0 +1,11 @@
+groups:
+- name: kubepulse-alerts
+  rules:
+  - alert: KubePulseDown
+    expr: absent(kubepulse_up) OR kubepulse_up == 0
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "KubePulse is down!"
+      description: "KubePulse app is not responding."
